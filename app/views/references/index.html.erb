@@ -5,6 +5,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Category</th>
+    <th>Photo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,7 @@
     <td><%= reference.name %></td>
     <td><%= reference.description %></td>
     <td><%= reference.category.name %></td>
+    <td><%= image_tag reference.photo.url(:small)%></td>
     <td><%= link_to 'Show', reference %></td>
     <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
     <td><%= link_to 'Destroy', reference, :confirm => 'Are you sure?', :method => :delete %></td>
