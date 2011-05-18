@@ -1,0 +1,11 @@
+<title>Catalog</title>
+
+<% @products.each do |product| %>
+  <div class="entry"> <%= image_tag(product.photo.url(:small)) %> 
+    <h3><%= product.name %></h3> <%=sanitize product.description %>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+    </div>
+  </div>
+<% end %>
+

@@ -9,6 +9,7 @@ gem 'rails', '3.0.3'
 gem 'nifty-generators', :group => :development
 gem 'mysql'
 gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git'
+gem 'activemerchant'
 # Use unicorn as the web server
 # gem 'unicorn'
 
