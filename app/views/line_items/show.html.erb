@@ -1,0 +1,16 @@
+<% title "Line Item" %>
+
+<p>
+  <strong>Product:</strong>
+  <%= @line_item.product_id %>
+</p>
+<p>
+  <strong>Cart:</strong>
+  <%= @line_item.cart_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_line_item_path(@line_item) %> |
+  <%= link_to "Destroy", @line_item, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", line_items_path %>
+</p>

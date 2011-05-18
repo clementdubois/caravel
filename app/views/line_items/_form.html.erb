@@ -1,0 +1,12 @@
+<%= form_for @line_item do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :cart_id %><br />
+    <%= f.text_field :cart_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
