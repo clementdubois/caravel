@@ -1,34 +1,24 @@
 <%= form_for @reference, :html => { :multipart => true } do |f| %>
-  <% if @reference.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reference.errors.count, "error") %> prohibited this reference from being saved:</h2>
+  <%= f.error_messages%>
 
-      <ul>
-      <% @reference.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
      <%= f.label :category_id %><br />
      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
-   </div>
-  <div  class="field">
+  </p>
+  <p>
     <%= f.label :photo %><br />
     <%= f.file_field :photo %>
-  </div>
+  </p>
    
-  <div class="actions">
+  <p>
     <%= f.submit %>
-  </div>
+  </p>
 <% end %>

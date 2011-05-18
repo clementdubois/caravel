@@ -31,3 +31,4 @@ gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test
