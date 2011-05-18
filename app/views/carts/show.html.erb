@@ -1,0 +1,12 @@
+<% title "Cart" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cart.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_cart_path(@cart) %> |
+  <%= link_to "Destroy", @cart, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", carts_path %>
+</p>

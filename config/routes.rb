@@ -1,4 +1,6 @@
 Caravel::Application.routes.draw do
+  resources :carts
+
   # resources :stores
 
   get "store/index"
