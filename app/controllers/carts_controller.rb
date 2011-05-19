@@ -50,9 +50,7 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { 
-        redirect_to(store_url, :notice => 'Your cart is currently empty') 
-      }
+      format.html { redirect_to(store_url) }
     end
   end
 end
