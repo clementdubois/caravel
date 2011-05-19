@@ -45,6 +45,40 @@ a {
 .fieldWithErrors {
   display: inline;
 }
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
 
 .error_messages {
   width: 400px;
@@ -257,3 +291,11 @@ a {
 }
 #cart table { border-top:	1px dotted #595; border-bottom: 1px dotted #595; margin-bottom: 10px;
 }
+
+/* Styles for order form */
+.depot_form fieldset { background: #efe;}
+.depot_form legend { color: #dfd; background: #141; font-family: sans-serif; padding: 0.2em 1em;}
+.depot_form label { width: 5em; float: left; text-align: right; padding-top: 0.2em; margin-right: 0.1em; display: block;}
+.depot_form select, .depot_form textarea, .depot_form input { margin-left: 0.5em;}
+.depot_form .submit { margin-left: 4em;}
+.depot_form div { margin: 0.5em 0;}
