@@ -11,13 +11,22 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.new
   end
   
-  def create
-    @line_item = LineItem.new(params[:line_item])
-    if @line_item.save
-      flash[:notice] = "Successfully created line item."
-      redirect_to @line_item
-    else
-      render :action => 'new'
+  def create 
+    @cart = current_cart 
+    product = Product.find(params[:product_id]) 
+    @line_item = @cart.add_product(product.id)
+    
+    respond_to do |format| 
+      if @line_item.save
+        format.html { redirect_to(@line_item.cart) }
+        format.xml { render :xml => @line_item, 
+                            :status => :created, 
+                            :location => @line_item }
+      else
+        format.html { render :action => "new" } 
+        format.xml { render :xml => @line_item.errors,
+          :status => :unprocessable_entity }
+      end 
     end
   end
   

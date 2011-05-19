@@ -4,7 +4,17 @@ class CartsController < ApplicationController
   end
   
   def show
-    @cart = Cart.find(params[:id])
+    begin
+      @cart = Cart.find(params[:id]) 
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_url, :notice => 'Invalid cart'
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml { render :xml => @cart }
+      end 
+    end
   end
   
   def new
@@ -36,9 +46,13 @@ class CartsController < ApplicationController
   end
   
   def destroy
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
     @cart.destroy
-    flash[:notice] = "Successfully destroyed cart."
-    redirect_to carts_url
+    session[:cart_id] = nil
+    respond_to do |format|
+      format.html { 
+        redirect_to(store_url, :notice => 'Your cart is currently empty') 
+      }
+    end
   end
 end
