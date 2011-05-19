@@ -7,13 +7,24 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body>
-    <div id="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+  
+  
+  <body	id="store" > 
+    <div id="banner">
+      <%= image_tag("logo.png") %>
+      <%= content_for?(:title) ? yield(:title) : "Caravel" %>
+    </div> 
+    <div id="columns">
+      <div id="side"> 
+      </div> 
+      <div id="main">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
     </div>
   </body>
+  
 </html>
