@@ -23,6 +23,10 @@
             <% end %>
           <% end %>
         </div>
+        <div id="menu">
+          <%= link_to "home", store_path %><br />
+          <%= link_to 'Add Product', new_product_path %>
+        </div>
       </div> 
       <div id="main">
         <% flash.each do |name, msg| %>
