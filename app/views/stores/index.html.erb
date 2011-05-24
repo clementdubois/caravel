@@ -2,12 +2,12 @@
 
 <div id="store">
 
-  <% @products.each do |product| %>
-    <div class="entry"> <%= image_tag(product.photo.url(:small)) %> 
-      <h3><%= product.name %></h3> <%=sanitize product.description %>
+  <% @references.each do |reference| %>
+    <div class="entry"> <%= image_tag(reference.photo.url(:small)) %> 
+      <h3><%= reference.name %></h3> <%=sanitize reference.description %>
       <div class="price_line">
-        <span class="price"><%= number_to_currency(product.price) %></span>
-        <%= button_to 'Add to Cart', line_items_path(:product_id => product),
+        <span class="price"><%= number_to_currency(reference.price) %></span>
+        <%= button_to 'Add to Cart', line_items_path(:reference_id => reference),
         :remote => true %>
       </div>
     </div>

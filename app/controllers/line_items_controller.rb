@@ -13,8 +13,8 @@ class LineItemsController < ApplicationController
   
   def create 
     @cart = current_cart 
-    product = Product.find(params[:product_id]) 
-    @line_item = @cart.add_product(product.id)
+    reference = Reference.find(params[:reference_id]) 
+    @line_item = @cart.add_reference(reference.id)
     
     respond_to do |format| 
       if @line_item.save

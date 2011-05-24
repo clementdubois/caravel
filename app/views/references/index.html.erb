@@ -1,0 +1,27 @@
+<% title "Poducts" %>
+<table>
+  <% @references.each do |reference| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td>
+        <%= image_tag reference.photo.url(:small)%>
+      </td>
+  
+      <td class="list_description">
+        <dl><%= reference.name %></dl>
+        <dd><%= truncate(strip_tags(reference.description),
+        :length => 80) %></dd>
+      </td>    
+  
+      <td class="list_actions">
+        <%= link_to 'Show', reference %><br />
+        <%= link_to 'Edit', edit_reference_path(reference) %><br />
+        <%= link_to 'Destroy', reference, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New reference', new_reference_path %>
+

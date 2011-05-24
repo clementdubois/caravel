@@ -8,7 +8,7 @@ Caravel::Application.routes.draw do
   # resources :stores
 
   get "store/index"
-  resources :products do 
+  resources :references do 
     get :who_bought, :on => :member
   end
 

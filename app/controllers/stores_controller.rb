@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   def index
-    @products = Product.all
+    @references = Reference.all
     @cart = current_cart
   end
 end

@@ -1,0 +1,24 @@
+<%= form_for @reference, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages%>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+     <%= f.label :category_id %><br />
+     <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </p>
+   
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

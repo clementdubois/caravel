@@ -2,12 +2,12 @@
 
 <table>
   <tr>
-    <th>Product</th>
+    <th>reference</th>
     <th>Cart</th>
   </tr>
   <% for line_item in @line_items %>
     <tr>
-      <td><%= line_item.product_id %></td>
+      <td><%= line_item.reference_id %></td>
       <td><%= line_item.cart_id %></td>
       <td><%= link_to "Show", line_item %></td>
       <td><%= link_to "Edit", edit_line_item_path(line_item) %></td>
