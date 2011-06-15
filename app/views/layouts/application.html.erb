@@ -16,6 +16,22 @@
     </div> 
     <div id="columns">
       <div id="side"> 
+        <div id="connection">
+          <% if user_signed_in? %>
+            <%= link_to "Déconnexion", destroy_user_session_path %>
+          <% else %>
+            connexion
+            <%= form_for("user", :url => user_session_path) do |f| %>
+              <%= f.text_field :email %>
+              <%= f.password_field :password %>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+              <%= f.submit 'se connecter' %>
+              <%= link_to "Mot de passe oublié ?", new_password_path('user') %>
+            <% end %>
+            <%= link_to "Inscription", new_user_registration_path %>
+          <% end %>
+        </div>
         <div id="cart">
           <% if @cart %>
             <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %> 
@@ -24,11 +40,13 @@
           <% end %>
         </div>
         <div id="menu">
-          <%= link_to "home", store_path %><br />
+          <%= link_to "home", root_path %><br />
           <%= link_to 'Add Product', new_reference_path %>
         </div>
       </div> 
       <div id="main">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <% end %>
