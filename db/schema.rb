@@ -10,13 +10,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615212540) do
+ActiveRecord::Schema.define(:version => 20110615235520) do
+
+  create_table "bills", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carts", :force => true do |t|
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "filiales", :force => true do |t|
+    t.string   "name"
+    t.string   "adress"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_bills", :force => true do |t|
+    t.integer  "reference_id"
+    t.integer  "bill_id"
+    t.integer  "quantity"
+    t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,11 +53,34 @@ ActiveRecord::Schema.define(:version => 20110615212540) do
     t.integer  "order_id"
   end
 
+  create_table "line_orders", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "reference_id"
+    t.integer  "quantity"
+    t.integer  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_receptions", :force => true do |t|
+    t.integer  "reference_id"
+    t.integer  "reception_id"
+    t.integer  "line_order_id"
+    t.integer  "received_quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "orders", :force => true do |t|
-    t.string   "name"
-    t.text     "address"
-    t.string   "email"
-    t.string   "pay_type"
+    t.integer  "user_id"
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.string   "state",         :default => "en attente de validation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "receptions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,6 +97,23 @@ ActiveRecord::Schema.define(:version => 20110615212540) do
     t.integer  "price",              :default => 0
   end
 
+  create_table "stocks", :force => true do |t|
+    t.integer  "reference_id"
+    t.integer  "filiale_id"
+    t.integer  "quantity",     :default => 0
+    t.integer  "min_alert",    :default => 0
+    t.boolean  "direct_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "name"
+    t.string   "adress"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",     :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false
@@ -63,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20110615212540) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "role",                                  :default => "user"
+    t.integer  "filiale_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

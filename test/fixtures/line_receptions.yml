@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  reference_id: 1
+  reception_id: 1
+  line_order_id: 1
+  received_quantity: 1
+
+two:
+  reference_id: 1
+  reception_id: 1
+  line_order_id: 1
+  received_quantity: 1

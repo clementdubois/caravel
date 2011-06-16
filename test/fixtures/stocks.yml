@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  reference_id: 1
+  filiale_id: 1
+  quantity: 1
+  min_alert: 1
+  direct_order: false
+
+two:
+  reference_id: 1
+  filiale_id: 1
+  quantity: 1
+  min_alert: 1
+  direct_order: false

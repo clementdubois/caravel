@@ -6,6 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.rememberable
       t.trackable
       t.string :role, :default => "user"
+      t.integer :filiale_id
 
       # t.encryptable
       # t.confirmable
