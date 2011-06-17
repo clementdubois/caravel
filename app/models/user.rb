@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :orders
+  belongs_to :filiale
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,4 +19,14 @@ class User < ActiveRecord::Base
   def achat?
     role == "achat"
   end
+  
+  def siege?
+    role == "siege"
+  end
+  
+  def marketing?
+    role == "marketing"
+  end
+  
+  
 end

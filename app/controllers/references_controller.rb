@@ -1,25 +1,19 @@
 class ReferencesController < ApplicationController
   # GET /references
-  # GET /references.xml    
+  # GET /references.xml   
+  
+  respond_to :html, :xml, :json 
 
   def index
-    @reference = Reference.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @references }
-    end
+    @references = Reference.all
+    respond_with(@references)
   end
 
   # GET /references/1
   # GET /references/1.xml
   def show
     @reference = Reference.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @reference }
-    end
+    respond_with(@reference)
   end
 
   # GET /references/new
@@ -89,5 +83,7 @@ class ReferencesController < ApplicationController
       format.xml { render :xml => @reference }
     end 
   end
+  
+  
   
 end

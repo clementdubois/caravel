@@ -1,0 +1,21 @@
+<% title "Stock" %>
+
+<% @references_by_category.each do |category, stocks|%>
+    <h2><%= category %></h2>
+    <table>
+      <tr>
+        <th>Référence</th>
+        <th>Désignation</th>
+        <th>Stock</th>
+        <th>Seuil</th>
+      </tr>
+      <% stocks.each do |stock| %>
+        <tr>
+          <td><%= stock.reference.id %></td>
+          <td><%= stock.reference.name %></td>
+          <td><%= stock.quantity %></td>
+          <td><%= stock.min_alert %></td>
+        </tr>
+      <% end %>
+    </table>
+<% end %>

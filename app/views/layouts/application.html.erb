@@ -3,6 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "jquery-ui-1.8.13.custom"%>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -12,12 +13,16 @@
   <body	id="store" > 
     <div id="banner">
       <%= image_tag("logo.png") %>
-      <%= content_for?(:title) ? yield(:title) : "Caravel" %>
+      <%= content_for?(:title) ? yield(:title) : "Caravels" %>
     </div> 
     <div id="columns">
       <div id="side"> 
         <div id="connection">
           <% if user_signed_in? %>
+            <% if current_user.achat? %>
+              <%= link_to "Etat des stocks", stocks_path %><br />
+              <%= link_to "Passer une commande", new_order_path %><br />
+            <% end %>
             <%= link_to "Déconnexion", destroy_user_session_path %>
           <% else %>
             connexion
@@ -54,6 +59,7 @@
         <%= yield %>
       </div>
     </div>
+    <%= yield :javascript %>
   </body>
   
 </html>

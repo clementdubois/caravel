@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615235520) do
+ActiveRecord::Schema.define(:version => 20110617233750) do
 
   create_table "bills", :force => true do |t|
     t.integer  "order_id"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(:version => 20110615235520) do
   create_table "line_items", :force => true do |t|
     t.integer  "reference_id"
     t.integer  "cart_id"
+    t.integer  "quantity",     :default => 0
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity",     :default => 1
-    t.integer  "order_id"
   end
 
   create_table "line_orders", :force => true do |t|
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(:version => 20110615235520) do
   end
 
   create_table "orders", :force => true do |t|
-    t.integer  "user_id"
     t.integer  "receiver_id"
     t.string   "receiver_type"
     t.string   "state",         :default => "en attente de validation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "filiale_id"
   end
 
   create_table "receptions", :force => true do |t|
@@ -88,13 +88,16 @@ ActiveRecord::Schema.define(:version => 20110615235520) do
   create_table "references", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "price",              :default => 0
+    t.string   "status",             :default => "en attente de validation"
+    t.integer  "country_id"
     t.integer  "category_id"
     t.string   "photo_file_name"
     t.integer  "photo_file_size"
     t.string   "photo_content_type"
-    t.integer  "price",              :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "supplier_id"
   end
 
   create_table "stocks", :force => true do |t|
@@ -102,9 +105,10 @@ ActiveRecord::Schema.define(:version => 20110615235520) do
     t.integer  "filiale_id"
     t.integer  "quantity",     :default => 0
     t.integer  "min_alert",    :default => 0
-    t.boolean  "direct_order"
+    t.boolean  "direct_order", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",       :default => "en attente"
   end
 
   create_table "suppliers", :force => true do |t|

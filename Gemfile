@@ -12,6 +12,7 @@ gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git'
 gem 'activemerchant'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'devise'
+gem "jquery-rails"
 # Use unicorn as the web server
 # gem 'unicorn'
 

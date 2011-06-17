@@ -1,34 +1,100 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
+<% form_for(@order) do |f| %>
+  <%= f.error_messages%>
+     <table>
+        <tr>
+          <th>Référence</th>
+          <th>Désignation</th>
+          <th>Quantité</th>
+          <th>Stock</th>
+        </tr>
+      
+      <% f.fields_for :line_orders do |builder| %>
+    
+        <tr class="line_order">
+          <td ><%#= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %>
+            <%= select_tag 'references[]', options_from_collection_for_select(@stocks, :reference_id, :reference_id), :include_blank => true, :class => "ref_id" %>
+          </td>
+          <td>
+            <!-- <div class="ui-widget"> -->
+              <%= select_tag 'references_name[]', options_from_collection_for_select(@stocks, :reference_id, :reference_name), :include_blank => true, :class => "ref_name" %>
+            <!-- </div> -->
+          </td>
+          <td><%#= text_field_tag 'quantity[]', :value => 0, :size => 5 %></td>
+          <td class="ref_stock"> </td>
+        </tr>
+      <% end %>
+
+    </table>
+    
+    <%= f.submit "Valider" %>
+<% end %>
+
+<% content_for :javascript do %>
+	<script type="text/javascript">
+	
+	$(function(){   
+	  
+    // $( ".ref_name" ).combobox();
+	   
+    $(".line_order > td > select.ref_id, .line_order > td > select.ref_name").change(function(){
+      var id = $(this).attr("value");
+      var ref = $(this).parents("tr.line_order").children("td").children("select.ref_id");
+      var name = $(this).parents("tr.line_order").children("td").children("select.ref_name");
+      var stock = $(this).parents("tr.line_order").children("td.ref_stock");
+      
+      if(id === ""){
+        name.attr("value", "");
+        ref.attr("value", "");
+        stock.html("");
+      }else{
+        $.getJSON( '/references/'+id, function(data){
+            name.attr("value", id);
+            ref.attr("value", id);
+          });
+        $.getJSON( '/stocks/'+id, function(data){
+            stock.html(data.stock.quantity);
+          });
+      }
+      
+    });
+  
+  });
+  
+	
+	</script>
+<% end %>
+
+<!-- <%#= form_for(@order) do |f| %>
+  <%# if @order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <h2><%#= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
       <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <%# @order.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
       </ul>
     </div>
-  <% end %>
+  <%# end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, :size => 40 %>
+    <%#= f.label :name %><br />
+    <%#= f.text_field :name, :size => 40 %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address, :rows => 3, :cols => 40 %>
+    <%#= f.label :address %><br />
+    <%#= f.text_area :address, :rows => 3, :cols => 40 %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, :size => 40 %>
+    <%#= f.label :email %><br />
+    <%#= f.email_field :email, :size => 40 %>
   </div>
   <div class="field">
-    <%= f.label :pay_type %><br />
-    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+    <%#= f.label :pay_type %><br />
+    <%#= f.select :pay_type, Order::PAYMENT_TYPES,
     :prompt => 'Select a payment method' %>
   </div>
   <div class="actions">
-    <%= f.submit 'Place Order' %>
+    <%#= f.submit 'Place Order' %>
   </div>
-<% end %>
+<%# end %> -->

@@ -8,7 +8,7 @@ class CartsController < ApplicationController
       @cart = Cart.find(params[:id]) 
     rescue ActiveRecord::RecordNotFound
       logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to store_url, :notice => 'Invalid cart'
+      redirect_to root_url, :notice => 'Invalid cart'
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -50,7 +50,7 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to(store_url) }
+      format.html { redirect_to(root_url) }
     end
   end
 end

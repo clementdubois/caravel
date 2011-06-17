@@ -3,7 +3,7 @@
 <div id="store">
 
   <% @references.each do |reference| %>
-    <div class="entry"> <%= image_tag(reference.photo.url(:small)) %> 
+    <div class="entry"> <%= image_tag(reference.photo.url(:thumb)) %> 
       <h3><%= reference.name %></h3> <%=sanitize reference.description %>
       <div class="price_line">
         <span class="price"><%= number_to_currency(reference.price) %></span>

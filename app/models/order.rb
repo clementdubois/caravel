@@ -1,7 +1,10 @@
 class Order < ActiveRecord::Base
+  
+  
   has_many :line_orders, :dependent => :destroy
+  accepts_nested_attributes_for :line_orders, :reject_if => lambda {|a| a[:reference_id].blank?}
   belongs_to :receiver, :polymorphic => true
-  belongs_to :user
+  belongs_to :filiale
   
   # PAYMENT_TYPES = [ "Credit card", "Paypal" ]
   #  

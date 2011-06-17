@@ -1,7 +1,13 @@
 Caravel::Application.routes.draw do
-  devise_for :users
 
-  resources :orders
+
+  devise_for :users
+  
+  resources :stocks
+
+  resources :orders do 
+    resources :line_orders
+  end
 
   resources :line_items
 
@@ -13,6 +19,7 @@ Caravel::Application.routes.draw do
   resources :references do 
     get :who_bought, :on => :member
   end
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
