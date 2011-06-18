@@ -23,7 +23,8 @@
             <% if current_user.achat? %>
               <%= link_to "Etat des stocks", stocks_path %><br />
               <%= link_to "Passer une commande", new_order_path %><br />
-              <%= link_to "Commandes en cours", orders_path %>
+              <%= link_to "Commandes en cours", orders_path %><br />
+              <%= link_to "Définir des alertes", edit_multiple_stocks_path %><br />
             <% end %>
             <%= link_to "Déconnexion", destroy_user_session_path %>
           <% else %>
