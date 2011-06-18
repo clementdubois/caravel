@@ -1,0 +1,23 @@
+<%= form_tag update_multiple_stocks_path, :method => :put do %>
+  <table>
+    <tr>
+      <th>Référence</th>
+      <th>Désignation</th>
+      <th>Stock</th>
+      <th>Seuil Critique</th>
+      <th>Commande Automatique</th>
+    </tr>
+    <% for stock in @stocks %>
+      <tr>
+        <td><%= stock.reference.id%></td>
+        <td><%= stock.reference.name %></td>
+        <td><%= stock.quantity %></td>
+        <%= fields_for "stocks[]", stock do |f| %>
+          <%= render "fields", :f => f %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= submit_tag "Valider les changements" %></p>
+<% end %>
+

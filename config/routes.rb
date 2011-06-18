@@ -3,7 +3,10 @@ Caravel::Application.routes.draw do
 
   devise_for :users
   
-  resources :stocks
+  resources :stocks, :except => [:show, :edit] do
+    get :edit_multiple, :on => :collection
+    put :update_multiple, :on => :collection
+  end
 
   resources :orders do 
     resources :line_orders

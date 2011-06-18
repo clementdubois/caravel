@@ -13,7 +13,20 @@ class StocksController < ApplicationController
   end
 
   def edit
+    @stock = current_user_filiale.stocks.find_by_reference_id(params[:id])
   end
+  
+  def edit_multiple
+    @stocks = current_user.filiale.stocks.accepted  
+  end
+
+  def update_multiple
+    @stocks = Stock.update(params[:stocks].keys, params[:stocks].values).reject { |p| p.errors.empty? }
+    flash[:notice] = "Informations modifiées"
+    redirect_to edit_multiple_stocks_path
+  end
+
+  
 
   def update
   end

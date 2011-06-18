@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :get_stocks, :only => [:new]
+  before_filter :get_order, :only => [:show, :edit]
+  before_filter :cant_edit, :only => [:edit]
   respond_to :html, :xml, :json
   # GET /orders
   # GET /orders.xml
@@ -15,7 +17,6 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.xml
   def show
-    @order = Order.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +45,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-    @order = Order.find(params[:id])
     @stocks = current_user.filiale.stocks.accepted & @order.receiver.stocks
   end
 
@@ -98,6 +98,7 @@ class OrdersController < ApplicationController
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
+    params[:order].merge!({:state => "envoyée"}) if params[:commit] == "Valider et envoyer"
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
@@ -124,6 +125,16 @@ class OrdersController < ApplicationController
   
   def get_stocks
     @stocks = current_user.filiale.stocks.accepted
+  end
+  
+  def get_order
+    @order = Order.find(params[:id])
+  end
+  
+  def cant_edit
+    if @order.validated?
+      redirect_to @order, :notice => "La commande à été envoyée, vous ne pouvez plus la modifier"
+    end
   end
 
 end

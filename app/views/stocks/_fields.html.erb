@@ -1,0 +1,7 @@
+<% if params[:field].blank? || params[:field] == "min_alert" %>
+  <td><%= f.number_field :min_alert, :size => 5 %></td>
+<% end %>
+<% if params[:field].blank? || params[:field] == "direct_order" %>
+  <td><%= f.check_box :direct_order %></td>
+<% end %>
+
