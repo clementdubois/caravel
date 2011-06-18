@@ -1,4 +1,4 @@
-<% form_for(@order) do |f| %>
+<% nested_form_for(@order) do |f| %>
   <%= f.error_messages%>
      <table>
         <tr>
@@ -6,22 +6,31 @@
           <th>Désignation</th>
           <th>Quantité</th>
           <th>Stock</th>
+          <th>Prix Total</th>
+          <th>Remove</th>
         </tr>
-      
+      <% index = 0 %>
       <% f.fields_for :line_orders do |builder| %>
     
         <tr class="line_order">
           <td ><%#= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %>
-            <%= select_tag 'references[]', options_from_collection_for_select(@stocks, :reference_id, :reference_id), :include_blank => true, :class => "ref_id" %>
+            <%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %>
           </td>
           <td>
             <!-- <div class="ui-widget"> -->
-              <%= select_tag 'references_name[]', options_from_collection_for_select(@stocks, :reference_id, :reference_name), :include_blank => true, :class => "ref_name" %>
+              <%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_name, {:include_blank => true}, {:class => "ref_id"} %>
+              <%#= select_tag "references_name[#{index}]", options_from_collection_for_select(@stocks, :reference_id, :reference_name), :include_blank => true, :class => "ref_name" %>
             <!-- </div> -->
           </td>
-          <td><%#= text_field_tag 'quantity[]', :value => 0, :size => 5 %></td>
-          <td class="ref_stock"> </td>
+          <td class><%= builder.number_field :quantity, :class => "quantity", :size => 5 %></td>
+          <td class="ref_stock"> <%= builder.number_field :stock, :disabled => true, :size => 5 %></td>
+          <td class="price"><%= builder.number_field :total, :readonly => true, :size => 5 %> </td>
+          <%# hidden_field_tag "line_number[#{index}]", %>
+          <td> 
+          <%#= builder.link_to_remove "X" %></td>
         </tr>
+        
+        <% index += 1 %>
       <% end %>
 
     </table>
@@ -35,24 +44,42 @@
 	$(function(){   
 	  
     // $( ".ref_name" ).combobox();
-	   
-    $(".line_order > td > select.ref_id, .line_order > td > select.ref_name").change(function(){
+    
+    //Change desired quantity
+    $(".quantity").change(function(){
+      var price = $(this).parents("tr.line_order").children("td.price").children('input');
+      var id = $(this).parents("tr.line_order").children("td").children("select.ref_id").attr("value");
+      var quantity = $(this).attr("value");
+      
+      $.getJSON( '/references/'+id, function(data){
+        price.attr("value", data.price * quantity);
+      });
+    });
+    
+	   //Choose a reference by id or by name, change quantity
+    $("select.ref_id, select.ref_name").change(function(){
       var id = $(this).attr("value");
       var ref = $(this).parents("tr.line_order").children("td").children("select.ref_id");
       var name = $(this).parents("tr.line_order").children("td").children("select.ref_name");
-      var stock = $(this).parents("tr.line_order").children("td.ref_stock");
+      var stock = $(this).parents("tr.line_order").children("td.ref_stock").children("input");
+      var price = $(this).parents("tr.line_order").children("td.price").children("input");
+      var quantity = $(this).parents("tr.line_order").children("td").children("input.quantity");
       
+      quantity.attr("value", 0);
       if(id === ""){
         name.attr("value", "");
         ref.attr("value", "");
-        stock.html("");
+        stock.attr("value","");
+        price.attr("value","");
       }else{
         $.getJSON( '/references/'+id, function(data){
             name.attr("value", id);
             ref.attr("value", id);
+            
+            price.attr("value", data.price * quantity.attr("value"));
           });
         $.getJSON( '/stocks/'+id, function(data){
-            stock.html(data.stock.quantity);
+            stock.attr("value", data.stock.quantity);
           });
       }
       

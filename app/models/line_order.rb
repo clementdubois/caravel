@@ -10,4 +10,8 @@ class LineOrder < ActiveRecord::Base
   def reference_name=(name)
     self.reference = Reference.find_by_name(name) unless name.blank
   end
+  
+  def stock
+    return self.reference.stocks.find_by_filiale_id(order.receiver_id).quantity unless reference.nil?
+  end
 end

@@ -13,6 +13,7 @@ gem 'activemerchant'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'devise'
 gem "jquery-rails"
+gem "nested_form", :git => "git://github.com/madebydna/nested_form.git"
 # Use unicorn as the web server
 # gem 'unicorn'
 

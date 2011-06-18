@@ -36,7 +36,8 @@ class Reference < ActiveRecord::Base
   def to_json(options = {})
     {
       :id => id,
-      :name => name    
+      :name => name,
+      :price => price
     }.to_json
   end
 end

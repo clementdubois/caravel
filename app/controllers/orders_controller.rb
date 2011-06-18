@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :get_stocks, :only => [:new]
+  before_filter :get_stocks, :only => [:new, :edit]
   respond_to :html, :xml, :json
   # GET /orders
   # GET /orders.xml
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     @order = Order.new
-    5.times {@order.line_orders.build }
+    Reference.count.times {@order.line_orders.build }
     
     # @cart = current_cart 
     # if @cart.line_items.empty?
@@ -51,17 +51,27 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     @orders = []
-    @references = Reference.find(params[:references].compact.reject {|a| a.blank?})
-    @suppliers = @references.group_by {|r| r.supplier}
+    @suppliers = []
     
-    @suppliers.each do |supplier, references|
-      order = Order.new({:receiver_id => supplier.id, :receiver_type => "Supplier", :filiale_id => current_user.filiale.id})
-      references.each do |reference|
-        order.line_orders.build({:reference_id => reference.id})
+    params[:order][:line_orders_attributes].reject.each do |i, lo|
+      unless lo["reference_id"].blank?
+        supplier = Reference.find(lo["reference_id"]).supplier  
+        @suppliers << supplier unless @suppliers.include?(supplier)
       end
+    end
+    
+    @suppliers.each do |supplier|
+      Rails.logger.debug { "---------------------#{supplier.to_yaml}"}
+      order = Order.new({:receiver_id => supplier.id, :receiver_type => "Supplier", :filiale_id => current_user.filiale.id})
+      params["order"]["line_orders_attributes"].each do |line_number, line_params| 
+        if !line_params["reference_id"].blank? && Reference.find(line_params["reference_id"]).supplier == supplier
+          order.line_orders.build(line_params)
+        end
+      end
+      
       order.save
       @orders << order
-    end
+    end    
     
     respond_with(@orders) do |format|
       format.html {redirect_to stocks_path}
@@ -90,7 +100,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
+        format.html { redirect_to(edit_order_path(@order), :notice => 'La commande à bien été mise à jour.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/madebydna/nested_form.git
+  revision: bce54d4741ef698de7bcdc97cb86010812dbf81f
+  specs:
+    nested_form (0.0.0)
+
+GIT
   remote: http://github.com/thoughtbot/paperclip.git
   revision: 13d51e3120e67b2b8b0b4d550968235dc90defb9
   specs:
@@ -103,6 +109,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   mysql
+  nested_form!
   nifty-generators
   paperclip!
   rails (= 3.0.3)
