@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
-  before_filter :get_stocks, :only => [:new, :edit]
+  before_filter :get_stocks, :only => [:new]
   respond_to :html, :xml, :json
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.paginate :page => params[:page], :order=>'created_at desc', :per_page => 10
-
+    @orders = current_user.filiale.orders.paginate :page => params[:page], :order=>'created_at desc', :per_page => 10
+    @orders_grouped_by_state = @orders.group_by {|o| o.state}
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @orders }
@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @stocks = current_user.filiale.stocks.accepted & @order.receiver.stocks
   end
 
   # POST /orders

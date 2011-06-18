@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%= render "header"%>
 
-<p>
-  <b>Name:</b>
-  <%= @order.name %>
-</p>
+<fieldset>
+  <legend>Contenu</legend>
+  
+  <table>
+    <tr>
+      <th>Référence</th>
+      <th>Désignation</th>
+      <th>Quantité</th>
+      <th>Prix Unitaire</th>
+      <th>Prix Total</th>
+    </tr>
+  <% @order.line_orders.each do |lo|%>
+    <tr>
+      <td><%= lo.reference.id %></td>
+      <td><%= lo.reference.name %></td>
+      <td><%= lo.quantity %></td>
+      <td><%= number_to_currency(lo.reference.price, :unit => "€", :delimiter => " ", :format => "%n%u") %></td>
+      <td><%= number_to_currency(lo.total, :unit => "€", :delimiter => " ", :format => "%n%u") %></td>
+    </tr>
+  <% end %>
+  
+</fieldset>>
 
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @order.email %>
-</p>
-
-<p>
-  <b>Pay type:</b>
-  <%= @order.pay_type %>
-</p>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

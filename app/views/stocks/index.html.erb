@@ -1,7 +1,9 @@
 <% title "Stock" %>
 
 <% @references_by_category.each do |category, stocks|%>
-    <h2><%= category %></h2>
+  <fieldset>
+    <legend><%= category%></legend>
+  
     <table>
       <tr>
         <th>Référence</th>
@@ -18,4 +20,6 @@
         </tr>
       <% end %>
     </table>
+  </fieldset>
+    
 <% end %>

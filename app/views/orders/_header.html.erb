@@ -1,0 +1,18 @@
+<% title "Commande #{@order.id}"%>
+
+<fieldset id="commande" class="">
+  <legend>Commande</legend>
+  <p> Référence           : <%= @order.id %></p>
+  <p> Montant Total       : <%= number_to_currency(@order.price, :unit => "€", :delimiter => " ", :format => "%n%u") %></p>
+  <p> Etat                : <%= @order.state %></p>
+  <p> Date de validation  : <%= @order.updated_at %></p>
+  
+</fieldset>
+
+<fieldset>
+  <legend>Fournisseur</legend>
+  
+  <p>Référence  : <%= @order.receiver.id %></p>
+  <p>Nom        : <%= @order.receiver.name %></p>
+  
+</fieldset>
