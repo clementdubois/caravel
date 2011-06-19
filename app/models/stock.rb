@@ -3,6 +3,7 @@ class Stock < ActiveRecord::Base
   belongs_to :filiale
   
   scope :accepted, where("status = 'valide'")
+  scope :pending, where("status = 'en attente'")
   scope :alert, accepted.where("quantity <= min_alert")
   
   def reference_name

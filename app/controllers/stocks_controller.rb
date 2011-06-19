@@ -26,6 +26,19 @@ class StocksController < ApplicationController
     redirect_to edit_multiple_stocks_path
   end
 
+  def edit_bulk_validate
+    @stocks = current_user.filiale.stocks.pending
+  end
+  
+  def bulk_validate
+    @stocks = Stock.find(params[:stocks].keys)
+    @stocks.each do |stock|
+      stock.status = "valide"
+      stock.save!
+    end
+    flash[:notice] = "Référence(s) validées dans le stock"
+    redirect_to edit_bulk_validate_stocks_path
+  end
   
 
   def update

@@ -10,6 +10,8 @@ Caravel::Application.routes.draw do
   resources :stocks do
     get :edit_multiple, :on => :collection
     put :update_multiple, :on => :collection
+    get :edit_bulk_validate, :on => :collection
+    put :bulk_validate, :on => :collection
   end
 
   resources :orders do 

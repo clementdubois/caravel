@@ -19,17 +19,7 @@
     <div id="columns">
       <div id="side"> 
         <div id="connection">
-          <% if user_signed_in? %>
-            <% if current_user.achat? %>
-              <%= link_to "Etat des stocks", stocks_path %><br />
-              <%= link_to "Passer une commande", new_order_path %><br />
-              <%= link_to "Commandes en cours", orders_path %><br />
-              <%= link_to "Définir des alertes", edit_multiple_stocks_path %><br />
-            <% elsif current_user.logistique? %>
-              <%= link_to "Admission Commande", new_reception_path %><br />
-            <% end %>
-            <%= link_to "Déconnexion", destroy_user_session_path %>
-          <% else %>
+          <% unless user_signed_in? %>
             connexion
             <%= form_for("user", :url => user_session_path) do |f| %>
               <%= f.text_field :email %>
@@ -51,7 +41,21 @@
         </div>
         <div id="menu">
           <%= link_to "home", root_path %><br />
-          <%= link_to 'Add Product', new_reference_path %>
+          <% if user_signed_in? %>
+            <% if current_user.achat? %>
+              <%= link_to "Etat des stocks", stocks_path %><br />
+              <%= link_to "Passer une commande", new_order_path %><br />
+              <%= link_to "Commandes en cours", orders_path %><br />
+              <%= link_to "Définir des alertes", edit_multiple_stocks_path %><br />
+            <% elsif current_user.logistique? %>
+              <%= link_to "Admission Commande", new_reception_path %><br />
+            <% elsif current_user.siege?%>
+              <%= link_to 'Ajouter Réference', new_reference_path %><br />
+            <% elsif current_user.marketing?%>
+              <%= link_to "Valider Références", edit_bulk_validate_stocks_path %><br />
+            <% end %>
+            <%= link_to "Déconnexion", destroy_user_session_path %><br />
+          <% end %>
         </div>
       </div> 
       <div id="main">

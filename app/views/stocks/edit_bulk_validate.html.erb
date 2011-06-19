@@ -1,0 +1,24 @@
+<%= form_tag bulk_validate_stocks_path, :method => :put do %>
+  <table>
+    <tr>
+      <th>Valider</th>
+      <th>Photo</th>
+      <th>Référence</th>
+      <th>Désignation</th>
+      <th>Description</th>
+      <th>Fournisseur</th>
+    </tr>
+    <% for stock in @stocks %>
+      <tr>
+        <td><%= check_box_tag "stocks[#{stock.id}]" %></td>
+        <td><%= image_tag stock.reference.photo.url(:tiny)%></td>
+        <td><%= stock.reference.id%></td>
+        <td><%= stock.reference.name %></td>
+        <td><%= stock.reference.description %></td>
+        <td><%= stock.reference.supplier.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= submit_tag "Faire entrer les références au stock" %></p>
+<% end %>
+

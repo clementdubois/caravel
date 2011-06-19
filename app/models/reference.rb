@@ -40,4 +40,5 @@ class Reference < ActiveRecord::Base
       :price => price
     }.to_json
   end
+  
 end

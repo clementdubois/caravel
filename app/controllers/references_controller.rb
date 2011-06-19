@@ -39,7 +39,7 @@ class ReferencesController < ApplicationController
 
     respond_to do |format|
       if @reference.save
-        format.html { redirect_to(@reference, :notice => 'reference was successfully created.') }
+        format.html { redirect_to(root_path, :notice => 'reference was successfully created.') }
         format.xml  { render :xml => @reference, :status => :created, :location => @reference }
       else
         format.html { render :action => "new" }

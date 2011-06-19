@@ -19,6 +19,11 @@
   </p>
   
   <p>
+    <%= f.label :fournisseur %>
+    <%= f.collection_select :supplier_id, Supplier.all, :id, :name%>
+  </p>
+  
+  <p>
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </p>
