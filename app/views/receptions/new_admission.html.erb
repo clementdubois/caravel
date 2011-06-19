@@ -1,0 +1,27 @@
+<% title "Admission" %>
+
+<% form_for @reception do |f| %>
+  <p>Référence Commande : <%= @reception.order_id %></p>
+  <%= f.hidden_field :order_id %>
+  
+  <table>
+    <tr>
+      <th>Référence</th>
+      <th>Désignation</th>
+      <th>Qté Demandée</th>
+      <th>Qté Reçue</th>
+      <th>Qté Facture</th>
+    </tr>
+    <%= f.fields_for :line_receptions do |lr| %>
+        <td><%= lr.text_field :reference_id, :readonly => true, :size => 5 %></td>
+        <td><%= lr.text_field :reference_name, :disabled => true, :size => 20 %></td>
+        <td><%= lr.text_field :quantity, :disabled => true, :size => 5 %></td>
+        <td><%= lr.number_field :received_quantity, :size => 5 %></td>
+        <td><%= lr.number_field :received_bill_quantity, :size => 5 %></td>
+        <%= lr.hidden_field :line_order_id %>
+      </tr>  
+    <% end %>
+  <table>
+    
+  <%= f.submit "Valider la réception pour cette commande"%>
+<% end %>

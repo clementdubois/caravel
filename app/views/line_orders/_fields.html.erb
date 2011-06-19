@@ -1,0 +1,9 @@
+<tr class="line_order">
+  <td ><%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %></td>
+  <td><%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_name, {:include_blank => true}, {:class => "ref_id"} %></td>
+  <td class><%= builder.number_field :quantity, :class => "quantity", :size => 5 %></td>
+  <td class="ref_stock"> <%= builder.number_field :stock, :disabled => true, :size => 5 %></td>
+  <td class="price"><%= builder.number_field :total, :readonly => true, :size => 5 %> </td>
+  <td> <%#= builder.check_box :_destroy %>
+    <%#= builder.label :_destroy, "Remove Line Order" %> </td>
+</tr>

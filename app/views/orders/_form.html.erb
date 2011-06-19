@@ -1,7 +1,7 @@
 <fieldset id="références_produits" class="">
   <legend>Références Produits</legend>
   
-  <%= nested_form_for(@order) do |f| %>
+  <%= form_for(@order) do |f| %>
     <%= f.error_messages%>
        <table>
           <tr>
@@ -14,30 +14,13 @@
           </tr>
         <% index = 0 %>
         <%= f.fields_for :line_orders do |builder| %>
-
-          <tr class="line_order">
-            <td ><%#= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %>
-              <%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_id, {:include_blank => true}, {:class => "ref_id"} %>
-            </td>
-            <td>
-              <!-- <div class="ui-widget"> -->
-                <%= builder.collection_select :reference_id, @stocks, :reference_id, :reference_name, {:include_blank => true}, {:class => "ref_id"} %>
-                <%#= select_tag "references_name[#{index}]", options_from_collection_for_select(@stocks, :reference_id, :reference_name), :include_blank => true, :class => "ref_name" %>
-              <!-- </div> -->
-            </td>
-            <td class><%= builder.number_field :quantity, :class => "quantity", :size => 5 %></td>
-            <td class="ref_stock"> <%= builder.number_field :stock, :disabled => true, :size => 5 %></td>
-            <td class="price"><%= builder.number_field :total, :readonly => true, :size => 5 %> </td>
-            <%# hidden_field_tag "line_number[#{index}]", %>
-            <td> 
-            <%#= builder.link_to_remove "X" %></td>
-          </tr>
-
+          <%=render :partial => 'line_orders/fields', :locals => { :builder => builder }%>
           <% index += 1 %>
         <% end %>
 
       </table>
-
+      
+      <%#=link_to "Ajouter Référence", '#', :remote => true, :class => :add_order_line_order%>
       <%= f.submit "Modifier" %>
       <%= f.submit "Valider et envoyer" %>
       

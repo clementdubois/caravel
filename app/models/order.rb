@@ -1,15 +1,17 @@
 class Order < ActiveRecord::Base
-  
-  
   has_many :line_orders, :dependent => :destroy
-  accepts_nested_attributes_for :line_orders, :reject_if => lambda {|a| a[:reference_id].blank?}
+  accepts_nested_attributes_for :line_orders, :reject_if => lambda {|a| a[:reference_id].blank?}, :allow_destroy => true
   belongs_to :receiver, :polymorphic => true
   belongs_to :filiale
+  
+  has_many :receptions
+  has_many :bills
   
   scope :wait_validation, :conditions => {:state => "en attente de validation"}
   scope :finished, :conditions => {:state => "terminé"}
   scope :wait_reception, :conditions => {:state => "envoyée"}
   scope :wait_other_receptions, :conditions => {:state => "partiellement reçue"}
+  scope :validated, where("state <> 'en attente de validation'")
   
   def validated?
     state != "en attente de validation"
@@ -25,6 +27,28 @@ class Order < ActiveRecord::Base
   
   def nothing_received?
     state == "envoyée"
+  end
+  
+  def some_reception
+    finished = 1
+    
+    line_orders.each do |lo|      
+      lo.line_receptions.each do |lr|
+        lo.received += lr.received_quantity
+      end
+      lo.save!
+      
+      if lo.received < lo.quantity && state != "partiellement reçue"
+        state = "partiellement reçue"
+        finished = 0
+        save!
+      end
+    end
+    
+    if finished
+      state = "terminé" 
+      save!
+    end
   end
   
   def price

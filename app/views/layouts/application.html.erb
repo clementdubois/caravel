@@ -25,6 +25,8 @@
               <%= link_to "Passer une commande", new_order_path %><br />
               <%= link_to "Commandes en cours", orders_path %><br />
               <%= link_to "Définir des alertes", edit_multiple_stocks_path %><br />
+            <% elsif current_user.logistique? %>
+              <%= link_to "Admission Commande", new_reception_path %><br />
             <% end %>
             <%= link_to "Déconnexion", destroy_user_session_path %>
           <% else %>

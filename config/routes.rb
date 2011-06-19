@@ -1,9 +1,13 @@
 Caravel::Application.routes.draw do
 
 
+  resources :receptions do
+    post :new_admission, :on => :collection
+  end
+
   devise_for :users
   
-  resources :stocks, :except => [:show, :edit] do
+  resources :stocks do
     get :edit_multiple, :on => :collection
     put :update_multiple, :on => :collection
   end

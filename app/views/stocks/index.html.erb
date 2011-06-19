@@ -1,25 +1,31 @@
 <% title "Stock" %>
 
-<% @references_by_category.each do |category, stocks|%>
-  <fieldset>
-    <legend><%= category%></legend>
+<% form_tag new_order_path, :method => :put do %>
+  <% @references_by_category.each do |category, stocks|%>
+    <fieldset>
+      <legend><%= category %></legend>
   
-    <table>
-      <tr>
-        <th>Référence</th>
-        <th>Désignation</th>
-        <th>Stock</th>
-        <th>Seuil</th>
-      </tr>
-      <% stocks.each do |stock| %>
+      <table>
         <tr>
-          <td><%= stock.reference.id %></td>
-          <td><%= stock.reference.name %></td>
-          <td><%= stock.quantity %></td>
-          <td><%= stock.min_alert %></td>
+          <th>Commander</th>
+          <th>Référence</th>
+          <th>Désignation</th>
+          <th>Stock</th>
+          <th>Seuil</th>
         </tr>
-      <% end %>
-    </table>
-  </fieldset>
+        <% stocks.each do |stock| %>
+          <tr>
+            <td><%= check_box_tag "reference_ids[]", stock.reference.id %></td>
+            <td><%= stock.reference.id %></td>
+            <td><%= stock.reference.name %></td>
+            <td><%= stock.quantity %></td>
+            <td><%= stock.min_alert %></td>
+          </tr>
+        <% end %>
+      </table>
+    </fieldset>
     
+  <% end %>
+  
+  <%= submit_tag "Passer la commande" %>
 <% end %>

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110617233750) do
+ActiveRecord::Schema.define(:version => 20110619152847) do
 
   create_table "bills", :force => true do |t|
     t.integer  "order_id"
     t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "reception_id"
   end
 
   create_table "carts", :force => true do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110617233750) do
     t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "line_reception_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110617233750) do
     t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "received",     :default => 0
   end
 
   create_table "line_receptions", :force => true do |t|
@@ -69,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110617233750) do
     t.integer  "received_quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "received_bill_quantity"
   end
 
   create_table "orders", :force => true do |t|
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20110617233750) do
   create_table "receptions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "references", :force => true do |t|
