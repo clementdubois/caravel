@@ -7,6 +7,7 @@ class Cart < ActiveRecord::Base
       current_item.quantity += 1
     else
       current_item = line_items.build(:reference_id => reference_id)
+      current_item.quantity += 1
     end
     current_item
   end

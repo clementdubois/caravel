@@ -1,0 +1,33 @@
+<fieldset id="références_produits" class="">
+  <legend>Références Produits</legend>
+  
+  <%= form_for(@order) do |f| %>
+    <%= f.error_messages%>
+       <table>
+          <tr>
+            <th>Référence</th>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Total</th>
+            <th>Remove</th>
+          </tr>
+        <% index = 0 %>
+        
+        <%= fields_for :line_orders do |lo| %>
+          <tr>
+            <td><%= lo.text_field :reference_id, :readonly => true, :size => 5 %></td>
+            <td><%= lo.text_field :reference_name, :disabled => true, :size => 20 %></td>
+            <td><%= lo.number_field :quantity, :size => 5 %></td>
+            <td><%= lo.number_field :total, :size => 6, :readonly => true %></td>
+            <td><%= link_to "X", "#"%></td>
+          </tr>
+        <% end %>
+
+      </table>
+      
+      <%#=link_to "Ajouter Référence", '#', :remote => true, :class => :add_order_line_order%>
+      <%= f.submit "Valider et envoyer" %>
+      
+  <% end %>
+  
+</fieldset>

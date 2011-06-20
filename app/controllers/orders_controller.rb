@@ -29,19 +29,48 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     Reference.count.times {@order.line_orders.build }
-    
-    # @cart = current_cart 
-    # if @cart.line_items.empty?
-    #   redirect_to root_url, :notice => "Your cart is empty"
-    #   return 
-    # end
-    # @order = Order.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @order }
     end
   end
+  
+  def new_front
+    @cart = current_cart 
+    if @cart.line_items.empty?
+      redirect_to root_url, :notice => "Votre panier est vide"
+      return 
+    end
+    @order = current_user.orders.create({:receiver_type => "Filiale", :receiver_id => 1})
+    @cart.line_items.each do |li|
+      @order.line_orders.create({:reference_id => li.reference_id,
+                                :quantity => li.quantity,
+                                :total => (li.quantity * li.reference.price)})
+    end
+    
+    Cart.destroy(session[:cart_id]) 
+    session[:cart_id] = nil
+    
+    redirect_to root_url, :notice => "Votre commande a été passé"
+  end
+  
+  # def create_front
+  #    @order = current_user.order.create(params[:order].merge!({:receiver_type => "Filiale", :receiver_id => 1}))
+  #    # @order.add_line_items_from_cart(current_cart)
+  # 
+  #    respond_to do |format|
+  #      if @order.save
+  #        Cart.destroy(session[:cart_id]) 
+  #        session[:cart_id] = nil 
+  #        format.html { redirect_to(root_url, :notice => 'Merci pour votre commande.') }
+  #        format.xml  { render :xml => @order, :status => :created, :location => @order }
+  #      else
+  #        format.html { render :action => "new_front" }
+  #        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+  #      end
+  #    end
+  #   end
 
   # GET /orders/1/edit
   def edit
@@ -77,21 +106,6 @@ class OrdersController < ApplicationController
     respond_with(@orders) do |format|
       format.html {redirect_to stocks_path}
     end
-    
-    # @order = Order.new(params[:order])
-    #     @order.add_line_items_from_cart(current_cart)
-    # 
-    #     respond_to do |format|
-    #       if @order.save
-    #         Cart.destroy(session[:cart_id]) 
-    #         session[:cart_id] = nil 
-    #         format.html { redirect_to(root_url, :notice => 'Thank you for your order.') }
-    #         format.xml  { render :xml => @order, :status => :created, :location => @order }
-    #       else
-    #         format.html { render :action => "new" }
-    #         format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-    #       end
-    #     end
   end
 
   # PUT /orders/1

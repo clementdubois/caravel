@@ -1,4 +1,4 @@
-<% title "Catalog"%>
+<% title "Catalogue"%>
 
 <div id="store">
 
@@ -6,9 +6,8 @@
     <div class="entry"> <%= image_tag(reference.photo.url(:thumb)) %> 
       <h3><%= reference.name %></h3> <%=sanitize reference.description %>
       <div class="price_line">
-        <span class="price"><%= number_to_currency(reference.price) %></span>
-        <%= button_to 'Add to Cart', line_items_path(:reference_id => reference),
-        :remote => true %>
+        <span class="price"><%= number_to_currency(reference.price, :unit => "€", :delimiter => " ", :format => "%n%u") %></span>
+        <%= button_to('Ajouter au panier', line_items_path(:reference_id => reference)) if current_user.user? %>
       </div>
     </div>
   <% end %>

@@ -18,6 +18,8 @@ class Reference < ActiveRecord::Base
   validates_presence_of :category_id, :on => :create, :message => "can't be blank"
   
   after_create :link_stock
+  
+  scope :bests, where(:best => true)
     
   #paperclip
  has_attached_file :photo,

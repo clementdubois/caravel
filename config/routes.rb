@@ -16,6 +16,8 @@ Caravel::Application.routes.draw do
 
   resources :orders do 
     resources :line_orders
+    get :new_front, :on => :collection
+    # put :create_front, :on => :member
   end
 
   resources :line_items

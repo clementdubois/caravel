@@ -6,12 +6,15 @@ class Order < ActiveRecord::Base
   
   has_many :receptions
   has_many :bills
+  belongs_to :user
   
   scope :wait_validation, :conditions => {:state => "en attente de validation"}
   scope :finished, :conditions => {:state => "terminé"}
   scope :wait_reception, :conditions => {:state => "envoyée"}
   scope :wait_other_receptions, :conditions => {:state => "partiellement reçue"}
   scope :validated, where("state <> 'en attente de validation'")
+  scope :from_user, where("filiale_id is null")
+  scope :from_filiale, where("filiale_id is not null")
   
   def validated?
     state != "en attente de validation"

@@ -8,4 +8,8 @@ class LineItem < ActiveRecord::Base
   def total_price 
     reference.price * quantity
   end
+  
+  def reference_name
+    return reference.name
+  end
 end
