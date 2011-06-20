@@ -16,6 +16,6 @@ class CreateReferences < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :products
+    drop_table :references
   end
 end
