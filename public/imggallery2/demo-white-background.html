@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+	<title>Image Gallery 2011</title>
+	<link rel="stylesheet" href="css/image-gallery-2011.css" />
+	<script type="text/javascript" src="js/external/mootools-core-1.3-full-compat.js"></script>
+	<script type="text/javascript" src="js/external/mootools-more-1.3.1.1.js"></script>
+	<script type="text/javascript" src="js/image-gallery-2011.js"></script>
+	<style type="text/css">
+	body{
+		font-family: Trebuchet MS, Arial;
+		width:100%;
+		background-color:#FFF;
+	}
+
+
+
+
+	.imgCopyright{
+		font-size:0.7em;
+		font-style:italic;
+	}
+	.imgCopyright a{
+		color:#F00;
+	}
+
+	/* Override default styles */
+	.dg-image-gallery{
+		border:3px solid #AAA;
+	}
+	.dg-image-gallery-previous{
+		background-image:url('images/left-white.png');
+		left : 0px;
+	}
+	.dg-image-gallery-previous-over{
+		background-image:url('images/left-white-over.png');
+	}
+	.dg-image-gallery-next{
+		background-image:url('images/right-white.png');
+		right : 0px;
+	}
+	.dg-image-gallery-next-over{
+		background-image:url('/images/right-white-over.png');
+	}
+	.dg-image-gallery-next-autoplay-start{
+
+		background-image:url('images/play-white.png');
+	}
+	.dg-image-gallery-next-autoplay-stop{
+
+		background-image:url('images/pause-white.png');
+	}
+	.dg-image-gallery-next-autoplay-start-off{
+		background-image:url('images/play-white-off.png');
+
+
+	}
+	.dg-image-gallery-next-autoplay-stop-off{
+		background-image:url('images/pause-white-off.png');
+
+	}
+	.dg-image-gallery-caption {
+		color:#000;
+	}
+	.dg-image-gallery-thumbnail-highlight{
+		border:3px solid #AAA;
+	}
+	</style>
+</head>
+<body>
+
+<div id="dg-image-gallery" class="dg-image-gallery">
+
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image1.jpg">
+		<span class="dg-image-gallery-caption">Picture taken from the Norwegian Island Boemlo.</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large1.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image2.jpg">
+		<span class="dg-image-gallery-caption">Go kart is FUN!</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large2.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image3.jpg">
+		<span class="dg-image-gallery-caption">Go kart is FUN!</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large3.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image4.jpg">
+		<span class="dg-image-gallery-caption">Picture taken in Aalesund.</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large4.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image5.jpg">
+		<span class="dg-image-gallery-caption">Go Kart is fun</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large5.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image6.jpg">
+		<span class="dg-image-gallery-caption">Picture taken from the ferry to Boemlo.</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large6.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image7.jpg">
+		<span class="dg-image-gallery-caption">Picture from Rogaland</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large7.jpg</span>
+	</div>
+	<div class="dg-image-gallery-image">
+		<img class="dg-image-gallery-thumb" src="demo-images/demo-white-background/image8.jpg">
+		<span class="dg-image-gallery-caption">Puerto Rico is probably my favourite board game.</span>
+		<span class="dg-image-gallery-large-image-path">demo-images/demo-white-background/large8.jpg</span>
+	</div>
+</div>
+<script type="text/javascript">
+var gallery = new DG.ImageGallery({
+	el : 'dg-image-gallery',
+	autoplay : {
+		pause : 2
+	}
+});
+</script>
+</body>
+</html>

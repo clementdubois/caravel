@@ -1,10 +1,21 @@
-<div class="cart_title">Votre Panier</div> 
+<p class="panierTitre">Mon panier</p>
 <table>
-  <%= render(cart.line_items) %>
-  <tr class="total_line"> 
-    <td colspan="2">Total</td> 
-    <td class="total_cell"><%= number_to_currency(cart.total_price, :unit => "€", :delimiter => " ", :format => "%n%u") %></td>
-  </tr> 
+	<thead>
+		<tr>
+			<th class="panierProduit">Produit</td>
+			<th class="panierQuantite">Quantité</td>
+			<th class="panierPrix">Prix unitaire</td>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th class="panierProduit" colspan="2">Total</td>
+			<th class="panierPrix"><%= number_to_currency(cart.total_price, :unit => "€", :delimiter => " ", :format => "%n%u")%></td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<%= render(cart.line_items) %>
+	</tbody>
 </table>
 <%= button_to "Finaliser", new_front_orders_path, :method => :get %>
 <%= button_to 'Vider le panier', cart, :method => :delete, :confirm => 'Etes vous sûr?' %>

@@ -1,0 +1,370 @@
+body{
+	width: 1080px;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-family: Helvetica, sans-serif;
+	font-size: 12px;
+	font-color: #000000;
+//	background-color: #fac090;
+}
+
+a{
+//	font-color: #000000;
+}
+
+.en-tete{
+//	border: 4px solid #612614;
+	height:250px;
+}
+
+.en-tete1{
+//	border: 4px solid #612614;
+	width: 210px;
+
+}
+
+.en-tete2{
+//	border: 4px solid #612614;
+	width: 570px;
+	margin-left: 220px;
+	margin-top: -246px;
+}
+
+.en-tete3{
+//	border: 4px solid #612614;
+	width: 260px;
+	height: 185px;
+	margin-left: 820px;
+	margin-top: -200px;
+}
+
+.logo{
+	width: 200px;
+}
+
+.banniere{
+	width: 570px;
+	height: 170px;
+	
+}
+
+.sous-titre{
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	text-align: center;
+	margin-top: 25px;
+	background-color: #612614;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.sous-titre a{
+	margin-left: 7px;
+	margin-right: 7px;
+	color: white;
+	font-size: 20px;
+}
+
+.sous-titre a:hover{
+	margin-left: 7px;
+	margin-right: 7px;
+	color: #f7c498;
+	font-size: 20px;
+}
+
+.liensSous-titre{
+	font-family: Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+.pied{
+	border: 4px solid #612614;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	font-family: Helvetica, sans-serif;
+	text-align: center;
+	background-color: #612614;}
+
+.pied a{
+	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: white;
+}
+
+.pied a:hover{
+	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #f7c498;
+}
+
+
+.panneau-droit{
+//	border: 4px solid #612614;
+	width: 250px;
+//	height: 790px;
+	float: right;
+	margin-right: 10px;
+}
+
+.panier{
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	width: 250px;
+	background-color: #612614;
+	color: white;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.panier p{
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+.panierTitre{
+	font-size: 18px;
+	font-style: italic;
+	color: #f7c498;
+}
+
+.panierProduit{
+	font-family: Verdana, Trebuchet MS, Georgia, Impact, Arial, serif;
+	font-size: 12px;
+	text-align: left;
+}
+
+thead th{
+	font-family: Verdana, Trebuchet MS, Georgia, Impact, Arial, serif;
+	font-size: 12px;
+	text-align: left;
+}
+
+tfoot th{
+	font-family: Verdana, Trebuchet MS, Georgia, Impact, Arial, serif;
+	font-size: 12px;
+	text-align: left;
+}
+
+.panierQuantite{
+	font-family: Verdana, Trebuchet MS, Georgia, Impact, Arial, serif;
+	font-size: 12px;
+	text-align: right;
+}
+
+.panierPrix{
+	font-family: Verdana, Trebuchet MS, Georgia, Impact, Arial, serif;
+	font-size: 12px;
+	text-align: right;
+}
+
+.identification{
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	width: 250px;
+	background-color: #612614;
+	font-color: white;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.identification h1{
+	font-size: 18px;
+	font-style: italic;
+	font-weight: normal;
+	color: #f7c498;
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+.identification a{
+	color: white;
+}
+
+.identification form{
+	color: white;
+}
+
+.promo{
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	width: 250px;
+	background-color: #612614;
+	margin-top: 20px;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.recherche{
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	width: 192px;
+	color: white;
+	background-color: #612614;
+	text-align: center;
+	webkit-border-radius: 20px;
+	moz-border-radius: 20px;
+	border-radius: 15px;
+	margin-top: 10px;
+}
+
+.panneau-central{
+//	border: 4px solid #612614;
+	margin-left: 170px;
+	height: 910px;
+	width: 600px;
+}
+
+.produits{
+//	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	border-left: 10px solid #612614;
+	border-right: 10px solid #612614;
+	height: 400px;
+	width: 600px;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+	margin-bottom: 20px;
+}
+
+.description{
+	background-color: #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	border-left: 10px solid #612614;
+	border-right: 10px solid #612614;
+	height: 900px;
+	width: 600px;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+	margin-bottom: 20px;
+}
+
+.description h1{
+	font-size: 25px;
+	font-style: italic;
+	font-weight: normal;
+	color: #f7c498;
+}
+
+.description p{
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+}
+
+.prix{
+	float: right;
+	font-size: 18px;
+//	font-style: italic;
+	font-weight: normal;
+	color: #f7c498;
+}
+
+
+div#menu {
+	border: 4px solid #612614;
+	border-top: 15px solid #612614;
+	border-bottom: 15px solid #612614;
+	border-right: 10px solid #612614;
+//	margin-top: 30px;
+	width: 130px;
+	float: left;
+	webkit-border-radius: 15px;
+	moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+div#menu ul {
+	padding: 0;
+	width: 130px;
+	border-left:0px solid #612614;
+	border-right:4px solid #612614;
+	margin:0px;
+}
+
+/*On positionne les elements du menu */
+div#menu ul li {
+	position:relative;
+	list-style: none; /*on enleve les icones de liste */
+	border-bottom:1px solid #612614; /*ajout d'une bordure de separation d'element:*/
+	background: #ffffff;
+}
+
+div#menu ul ul {
+	position: absolute;
+	top: 0;
+	left: 130px; /*100px correspond au décalage a droite, on décale de la taille du ul de base*/
+}
+
+div#menu li a {
+	font-size: 20px;
+	text-decoration: none; /* plus de soulignement pour les liens */
+}
+ 
+
+/* On cache tous les sous menu avec la propriété display none */
+div#menu ul ul {
+	position: absolute;
+	top: 0;
+	left: 130px;
+	display:none
+}
+
+/*Lors du survol ,avec la souris, les sousmenu apparaissent grace a display: block */
+div#menu ul.niveau1 li.sousmenu:hover ul.niveau2, div#menu ul.niveau2 li.sousmenu:hover ul.niveau3 {
+	display:block;
+}
+
+/* fond blanc pour le menu */
+div#menu a {
+	color:#000000
+}
+
+/* fond different au survol de la souris entre les sous-menu et les "basiques"*/
+div#menu li:hover {
+	background: #612614;
+}
+
+div#menu li.sousmenu:hover {
+	background: #612614;
+}
+
+/* Rajout d'une petite fleche pour les sous menu (j'ai pioché cette astuce sur le web ;) )*/
+div#menu li.sousmenu {
+	background: white;
+}
+
+/* on rajoute une bordure a gauche et des padding, on doit donc réajuster la taille 100-(8 de bordure + 8 de padding) =84 */
+div#menu li a {
+	text-decoration: none;
+	padding: 4px 0 4px 8px;
+	display:block;
+	border-left: 8px solid #612614;
+	width:84px;
+}
+
+/* la bordure de chaque hauteur a une couleure de survol*/
+div#menu li a:hover {
+	border-left-color: white;
+	color: white;
+}
+
+div#menu ul ul li a:hover {
+	border-left-color: white;
+	color: white;
+}

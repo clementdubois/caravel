@@ -1,9 +1,5 @@
-<% if line_item == @current_item %> 
-  <tr id="current_item"> 
-<% else %> 
-  <tr>
-<% end %> 
-  <td><%= line_item.quantity %>&times;</td> 
-  <td><%= line_item.reference.name %></td> 
-  <td class="item_price"><%= number_to_currency(line_item.reference.price * line_item.quantity, :unit => "€", :delimiter => " ", :format => "%n%u") %></td>
+<tr>
+	<td class="panierProduit"><%= line_item.reference.name %></td>
+	<td class="panierQuantite"><%= line_item.quantity %></td>
+	<td class="panierPrix"><%= number_to_currency(line_item.reference.price * line_item.quantity, :unit => "€", :delimiter => " ", :format => "%n%u") %></td>
 </tr>

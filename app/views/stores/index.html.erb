@@ -1,16 +1,23 @@
-<% title "Catalogue"%>
+<!-- <%# title "Catalogue"%>
 
-<div id="store">
+<div id="store"> -->
 
-  <% @references.each do |reference| %>
-    <div class="entry"> <%= image_tag(reference.photo.url(:thumb)) %> 
-      <h3><%= reference.name %></h3> <%=sanitize reference.description %>
+  <!-- <%# @references.each do |reference| %>
+    <div class="entry"> <%#= image_tag(reference.photo.url(:thumb)) %> 
+      <h3><%#= reference.name %></h3> <%#=sanitize reference.description %>
       <div class="price_line">
-        <span class="price"><%= number_to_currency(reference.price, :unit => "€", :delimiter => " ", :format => "%n%u") %></span>
-        <%= button_to('Ajouter au panier', line_items_path(:reference_id => reference)) if current_user.user? %>
+        <span class="price"><%#= number_to_currency(reference.price, :unit => "€", :delimiter => " ", :format => "%n%u") %></span>
+        <%#= button_to('Ajouter au panier', line_items_path(:reference_id => reference)) if current_user && current_user.user? %>
       </div>
     </div>
-  <% end %>
+  <%# end %> -->
   
-</div>
+  <div class="produits">
+    <iframe src="/imggallery2/demo.html" width=600 height=400 scrolling=no frameborder="0"></iframe>
+  </div>
+  <div class="produits">
+    <iframe src="imggallery/demo.html" width=600 height=400 scrolling=no frameborder="0"></iframe>
+  </div>
+  
+<!-- </div> -->
 

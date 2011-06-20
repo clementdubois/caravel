@@ -1,0 +1,118 @@
+
+
+/* Parent container for the entire gallery */
+.dg-image-gallery{
+	position:relative;
+	margin-left: -8px;
+	margin-top:-7px;
+	width:640px;
+	height:400px;
+	border:0px solid #AAA;
+}
+/* Enlarged image */
+.dg-image-gallery-enlarged-image {
+	position : absolute;
+	left: 0px;
+	top:0px;
+	background-position : center center;
+	width : 100%;
+	height: 340px;
+	z-index:400000;
+}
+/* Caption below large image */
+.dg-image-gallery-caption {
+	position:absolute;
+	bottom:0px;
+	height:30px;
+	width:100%;
+	text-align:right;
+	color: #CCC;
+	z-index:10000;
+}
+/* Container for all thumbnails */
+.dg-image-gallery-thumbnail-container {
+	position : absolute;
+	bottom : 0px;
+	width : 100%;
+	left: 20px;
+	padding-bottom:10px;
+	width:630px;
+	/* height:???; - is set by the script based on property thumb height */
+}
+/* Thumbnails inside thumbnail strip */
+.dg-image-gallery-thumbnail{
+	width: 40px;
+	height : 40px;
+	padding-right:2px;
+	padding-left:2px;
+}
+
+/* Highlight element */
+.dg-image-gallery-thumbnail-highlight{
+	border:3px solid #CCC;
+	padding:2px;
+}
+
+/* Previous and next buttons */
+
+/**.dg-image-gallery-previous, .dg-image-gallery-next {
+	background-position : center center;
+	cursor: pointer;
+	width:20px;
+	height:120px;
+	bottom:10px;
+	position: absolute;
+	cursor: pointer;
+}
+.dg-image-gallery-previous{
+	background-image:url('../images/left.png');
+	left : 0px;
+}
+.dg-image-gallery-previous-over{
+	background-image:url('../images/left-over.png');
+}
+.dg-image-gallery-next{
+	background-image:url('../images/right.png');
+	right : 0px;
+}
+.dg-image-gallery-next-over{
+	background-image:url('../images/right-over.png');
+}*/
+
+/** Autoplay buttons */
+.dg-image-gallery-next-autoplay-container{
+	position:absolute;
+	right:5px;
+	top:350px;
+	z-index:20000;
+	width:60px;
+}
+.dg-image-gallery-next-autoplay-start, .dg-image-gallery-next-autoplay-stop{
+	position:absolute;
+	top:0px;
+	color:#CCC;
+	padding:5px;
+	height:20px;
+	width:30px;
+
+	text-align:left;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+.dg-image-gallery-next-autoplay-start{
+	left:0px;
+	background-image:url('../images/play.png');
+}
+.dg-image-gallery-next-autoplay-stop{
+	left:30px;
+	background-image:url('../images/pause.png');
+}
+.dg-image-gallery-next-autoplay-start-off{
+	background-image:url('../images/play-off.png');
+	cursor: default;
+
+}
+.dg-image-gallery-next-autoplay-stop-off{
+	background-image:url('../images/pause-off.png');
+	cursor: default;
+}
